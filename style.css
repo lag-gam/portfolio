@@ -7,8 +7,7 @@
 
   @font-face {
     font-family: "MinecraftFont";
-    src: url("fonts/MinecraftFont.ttf") format("ttf"),
-         url("fonts/MinecraftFont.ttf") format("ttf");
+    src: url("fonts/MinecraftFont.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
   }
@@ -87,79 +86,158 @@
     text-align: center;
   }
   
-  /*****************************************
-  ABOUT SECTION
+ /*****************************************
+  ABOUT SECTION - Fullscreen Hero
 ******************************************/
+
 .about-section {
-    background-color: var(--light-purple);
-  }
+  height: 100vh; /* Fullscreen height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light-purple);
+  overflow: hidden;
+}
+
+/* Container to align image & text */
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 85%;
+  max-width: 1200px;
+}
+
+/* PROFILE IMAGE */
+.profile-image img {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  animation: floatImage 4s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* TEXT SECTION */
+.about-text {
+  text-align: center;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+}
+
+.floating-name {
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--dark-purple);
+  line-height: 1.2;
+  animation: floatText 4s ease-in-out infinite;
+}
+
+.bio {
+  font-size: 1rem;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+@keyframes hide-cursor {
+  to { opacity: 0; }
+}
+/* Typing animation for each line */
+.bio-line {
+  overflow: hidden;
+  border-right: 2px solid var(--dark-purple); /* Blinking cursor */
+  white-space: nowrap; /* Keeps text in one line */
+  width: 0; /* Starts hidden */
+  display: inline-block;
+  animation: typing 3s steps(40, end) forwards, blink-caret .75s step-end infinite;
+}
+/* Delays second line typing until first is complete */
+.bio-line-1::after {
+  content: "|";
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  animation: hide-cursor 0s linear 3s forwards;
+}
+
+
+.bio-line-2::backdrop{
+  content: "|";
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  animation: hide-cursor 0s linear 3s forwards;
   
+  
+}
+.bio-line-2::after {
+  content: "|";
+  display: inline-block;
+  opacity: 0;
+  animation: show-cursor 0s linear 3s forwards, blink-caret .75s step-end infinite 3s;
+}
+
+
+/* Typing effect */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; } /* Expands dynamically */
+}
+
+/* Blinking cursor */
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--dark-purple); }
+}
+
+/* Centered SOCIAL ICONS */
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.social-links a img {
+  width: 40px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.social-links a:hover img {
+  transform: scale(1.1);
+}
+
+/* Responsive Tweaks */
+@media (max-width: 900px) {
   .about-container {
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-  
-  /* Top Row: Image + Name/Title side by side on larger screens */
-  .about-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center; /* center horizontally */
-    gap: 2rem;
-  }
-  
-  .profile-image img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    /* Make it a circle with no border or outline */
-    border: none;
-    border-radius: 50%;
-    box-shadow: none;
-  }
-  
-  /* Name and Title */
-  .about-name-title {
     text-align: center;
-  }
-  .about-name-title h1 {
-    font-size: 2rem;
-    color: var(--dark-purple);
-    margin-bottom: 0.5rem;
-  }
-  .about-name-title h3 {
-    color: var(--primary-purple);
-    margin-bottom: 1rem;
-    font-weight: 500;
-  }
-  
-  /* Bio sits below the top row */
-  .about-bio {
-    max-width: 600px;
-    text-align: center;
-  }
-  
-  /*****************************************
-    SOCIAL ICONS
-  ******************************************/
-  .social-links {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .social-links a img {
-    width: 36px;   /* or any size you like */
-    height: 36px;
-    transition: transform 0.3s;
-  }
-  
-  /* Enlarge or highlight on hover */
-  .social-links a:hover img {
-    transform: scale(1.1);
   }
 
+  .profile-image img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .floating-name {
+    font-size: 4rem;
+  }
+
+  .bio {
+    font-size: 1.3rem;
+  }
+}
   /* Education Section */
   .timeline {
     display: flex;
