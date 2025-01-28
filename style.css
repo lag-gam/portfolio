@@ -4,7 +4,15 @@
     padding: 0;
     box-sizing: border-box;
   }
-  
+
+  @font-face {
+    font-family: "MinecraftFont";
+    src: url("fonts/MinecraftFont.ttf") format("ttf"),
+         url("fonts/MinecraftFont.ttf") format("ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
+
   /* Colors */
   :root {
     --primary-purple: #6f3dc1; /* or your favorite shade of purple */
@@ -16,7 +24,7 @@
   
   /* Body Styles */
   body {
-    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-family: "MinecraftFont", sans-serif;
     color: var(--text-color);
     background-color: var(--light-purple);
     scroll-behavior: smooth; /* Smooth scrolling for anchor links */
@@ -79,12 +87,26 @@
     text-align: center;
   }
   
-  /* About Section */
-  .about-section .content {
+  /*****************************************
+  ABOUT SECTION
+******************************************/
+.about-section {
+    background-color: var(--light-purple);
+  }
+  
+  .about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  /* Top Row: Image + Name/Title side by side on larger screens */
+  .about-header {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center; /* center horizontally */
     gap: 2rem;
   }
   
@@ -92,30 +114,52 @@
     width: 200px;
     height: 200px;
     object-fit: cover;
-    border-radius: 100%;
-    border: 5px solid var(--primary-purple);
+    /* Make it a circle with no border or outline */
+    border: none;
+    border-radius: 50%;
+    box-shadow: none;
   }
   
-  .about-text {
-    max-width: 600px;
+  /* Name and Title */
+  .about-name-title {
+    text-align: center;
   }
-  
-  .about-text h1 {
-    font-size: 2.2rem;
+  .about-name-title h1 {
+    font-size: 2rem;
     color: var(--dark-purple);
     margin-bottom: 0.5rem;
   }
-  
-  .about-text h3 {
+  .about-name-title h3 {
     color: var(--primary-purple);
     margin-bottom: 1rem;
     font-weight: 500;
   }
   
-  .about-text p {
-    margin-bottom: 0.8rem;
+  /* Bio sits below the top row */
+  .about-bio {
+    max-width: 600px;
+    text-align: center;
   }
   
+  /*****************************************
+    SOCIAL ICONS
+  ******************************************/
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .social-links a img {
+    width: 36px;   /* or any size you like */
+    height: 36px;
+    transition: transform 0.3s;
+  }
+  
+  /* Enlarge or highlight on hover */
+  .social-links a:hover img {
+    transform: scale(1.1);
+  }
+
   /* Education Section */
   .timeline {
     display: flex;
