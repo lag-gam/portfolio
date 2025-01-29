@@ -19,4 +19,22 @@ document.addEventListener("DOMContentLoaded", () => {
       observer.observe(section);
     });
   });
+
+  
+  const items = document.querySelectorAll(".rpg-item");
+  const tooltip = document.querySelector(".tooltip");
+  
+  items.forEach(item => {
+    item.addEventListener("mouseenter", () => {
+      tooltip.innerHTML = `<strong>${item.dataset.name} (${item.dataset.level})</strong><br>${item.dataset.effect}`;
+      tooltip.style.opacity = "1";
+      tooltip.style.left = `${item.getBoundingClientRect().left + window.scrollX}px`;
+      tooltip.style.top = `${item.getBoundingClientRect().top - 50 + window.scrollY}px`;
+    });
+  
+    item.addEventListener("mouseleave", () => {
+      tooltip.style.opacity = "0";
+    });
+  });
+
   

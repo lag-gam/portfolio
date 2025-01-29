@@ -46,6 +46,7 @@
           <p class="bio-line bio-line-2">algorithmic bias and building impactful software.</p>
         </div>
         <br>
+        <br>
         <!-- Social links -->
         <div class="social-links">
           <a href="https://www.linkedin.com/in/agamIheanyiigwe" target="_blank">
@@ -65,7 +66,7 @@
   <!-- Education Section -->
   <section class="section education-section" id="education">
     <div class="section-header">
-      <h2>Education</h2>
+      <h1>Education</h1>
     </div>
     <div class="timeline">
       <div class="timeline-item">
@@ -73,50 +74,74 @@
         <p><strong>B.S. in Computer Science</strong> (Expected June 2027)</p>
         <p><strong>GPA:</strong> 3.99/4.0</p>
       </div>
+      <div class="timeline-item">
+        <h3>Howard Community College</h3>
+        <p><strong>Associates Degree in STEM Studies</strong> (June 2023)</p>
+        <p><strong>GPA:</strong> 3.89/4.0</p>
+      </div>
     </div>
   </section>
 
   <!-- Experience Section -->
   <section class="section experience-section" id="experience">
     <div class="section-header">
-      <h2>Experience</h2>
+      <h1>Experience</h1>
     </div>
-    <div class="experience-items">
-      <!-- LinkedIn -->
-      <div class="experience-item">
-        <img src="images/linkedin.png" alt="LinkedIn Logo" class="company-logo">
-        <h3>LinkedIn Corporation</h3>
-        <p><strong>Incoming Software Development Intern</strong><br/>
-           Summer 2025
-        </p>
+    <div class="experience-container">
+      <!-- LinkedIn Card -->
+      <div class="experience-card">
+        <div class="card-inner">
+          <!-- Front Side -->
+          <div class="card-front">
+            <img src="images/linkedin.png" alt="LinkedIn Logo">
+          </div>
+          <!-- Back Side -->
+          <div class="card-back">
+            <h1>LinkedIn Corporation</h1>
+            <br>
+            <p>Incoming Software Development Intern</p>
+            <h5>Summer 2025</h5>
+          </div>
+        </div>
       </div>
-
-      <!-- Amazon -->
-      <div class="experience-item">
-        <img src="images/amazon.png" alt="Amazon Logo" class="company-logo">
-        <h3>Amazon.com, Inc.</h3>
-        <p><strong>Software Development Intern</strong><br/>
-           Summer 2024
-        </p>
-        <ul>
-          <li>Optimized large-order detection and processing, reducing manual interventions near-zero.</li>
-          <li>Eliminated 6-hour processing delays for on-call engineers using AWS tools.</li>
-          <li>Increased large-order processing efficiency by 20%.</li>
-          <li>Demonstrated significant extensibility within Amazon’s back-end codebase, pushing 100% to Prod.</li>
-        </ul>
+    
+      <!-- Amazon Card -->
+      <div class="experience-card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="images/amazon.webp" alt="Amazon Logo">
+          </div>
+          <div class="card-back">
+            <h1>Amazon.com, Inc.</h1>
+            <br>
+            <p>Software Development Intern</p>
+            <h5>Summer 2024</h5>
+            <ul>
+              <li>Optimized large-order detection and processing.</li>
+              <li>Eliminated 6-hour processing delays with AWS tools.</li>
+              <li>Increased efficiency by 20%.</li>
+            </ul>
+          </div>
+        </div>
       </div>
-
-      <!-- Jane Street -->
-      <div class="experience-item">
-        <img src="images/JaneStreet.jpeg" alt="Jane Street Logo" class="company-logo">
-        <h3>Jane Street</h3>
-        <p><strong>Fellow, Academy of Math and Programming (AMP)</strong><br/>
-           Summer 2023
-        </p>
-        <ul>
-          <li>Five-week program, intensively training skills in probability, statistics, game theory, combinatorics, etc.</li>
-          <li>Generated mock exchange-traded funds (ETFs), identifying key stakeholders and developing market/analytical abilities.</li>
-        </ul>
+    
+      <!-- Jane Street Card -->
+      <div class="experience-card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="images/janestreet.png" alt="Jane Street Logo">
+          </div>
+          <div class="card-back">
+            <h1>Jane Street</h1>
+            <br>
+            <p>AMP Intern</p>
+            <h5>Summer 2023</h5>
+            <ul>
+              <li>Five-week intensive training in probability, game theory, etc.</li>
+              <li>Developed market analytics for ETFs.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -126,31 +151,31 @@
     <div class="section-header">
       <h2>Skills</h2>
     </div>
-    <div class="skills-grid">
-      <div class="skill-category">
-        <h3>Languages & Tools</h3>
-        <p>Java, C++, Python, C, HTML, CSS, JS, TypeScript, Combinatorics, Project Management</p>
-        <p>AWS (DynamoDB, S3 Buckets, CloudWatch), Git, SolidWorks, Arduino</p>
+    <div class="rpg-inventory">
+      <div class="rpg-item" data-name="Java" data-level="Lv. Intermediate" data-effect="Master of Backend Magic">
+        <img src="images/java_logo.png" alt="Java">
       </div>
-      <div class="skill-category">
-        <h3>Campus Involvement</h3>
-        <ul>
-          <li>Corporate Chair, NSBE, Stanford, California (2023 – Present)</li>
-          <li>Programming Officer, Black in CS, Stanford, California (2023 – Present)</li>
-          <li>Stanford Robotics Club (2023 – Present)</li>
-        </ul>
+      <div class="rpg-item" data-name="Python" data-level="Lv. Advanced" data-effect="Data Science Wizard">
+        <img src="images/python_logo.png" alt="Python">
       </div>
-      <div class="skill-category">
-        <h3>Hobbies</h3>
-        <p>Thrifting, Vinyl Hunting, Reading Manga</p>
+      <div class="rpg-item" data-name="C++" data-level="Lv. Intermediate" data-effect="Low-Level Sorcery">
+        <img src="images/cpp_logo.png" alt="C++">
       </div>
+      <div class="rpg-item" data-name="OpenAI API" data-level="Lv. Beginner" data-effect="Pro Prompt Engineer">
+        <img src="images/openai.png" alt="OpenAI">
+      </div>
+      
+      <div class="tooltip"></div>
     </div>
+    
   </section>
+
+
 
   <!-- Projects Section -->
   <section class="section projects-section" id="projects">
     <div class="section-header">
-      <h2>Projects</h2>
+      <h1>Projects</h1>
     </div>
     <div class="project-item">
       <h3>TreePath <small>(Winter 2025)</small></h3>
