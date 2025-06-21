@@ -1,16 +1,16 @@
-// Advanced Portfolio JavaScript with Horizontal Scrolling and Enhanced Interactions
+// Advanced Portfolio JavaScript with Smooth Section Transitions
 class PortfolioAnimations {
   constructor() {
     this.currentSection = 0;
     this.totalSections = 5;
-    this.isScrolling = false;
+    this.isTransitioning = false;
     this.init();
   }
 
   init() {
     this.setupLoadingScreen();
     this.setupGSAP();
-    this.setupHorizontalScrolling();
+    this.setupSectionTransitions();
     this.setupEnhancedTooltips();
     this.setup3DEffects();
     this.setupNavigation();
@@ -50,87 +50,113 @@ class PortfolioAnimations {
     gsap.defaults({ ease: "power2.out" });
   }
 
-  setupHorizontalScrolling() {
-    const mainContainer = document.querySelector('.main-container');
+  setupSectionTransitions() {
     const sections = document.querySelectorAll('.section');
     
-    // Disable default scroll behavior
-    document.body.style.overflow = 'hidden';
-    
-    // Handle wheel events for horizontal scrolling
-    let isScrolling = false;
+    // Create intersection observers for each section
+    sections.forEach((section, index) => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !this.isTransitioning) {
+              this.currentSection = index;
+              this.updateActiveNav(index);
+              this.animateSectionContent(index);
+            }
+          });
+        },
+        {
+          threshold: 0.5, // Trigger when 50% of section is visible
+          rootMargin: '-10% 0px -10% 0px'
+        }
+      );
+      
+      observer.observe(section);
+    });
+
+    // Handle scroll-based section transitions
     let scrollTimeout;
+    let lastScrollTop = 0;
     
-    window.addEventListener('wheel', (e) => {
-      e.preventDefault();
+    window.addEventListener('scroll', () => {
+      if (this.isTransitioning) return;
       
-      if (isScrolling) return;
-      
-      isScrolling = true;
       clearTimeout(scrollTimeout);
       
-      if (e.deltaY > 0 && this.currentSection < this.totalSections - 1) {
-        // Scroll down/right
-        this.currentSection++;
-        this.scrollToSection(this.currentSection);
-      } else if (e.deltaY < 0 && this.currentSection > 0) {
-        // Scroll up/left
-        this.currentSection--;
-        this.scrollToSection(this.currentSection);
+      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Check if we're near the bottom of a section
+      const currentSectionElement = sections[this.currentSection];
+      if (!currentSectionElement) return;
+      
+      const sectionRect = currentSectionElement.getBoundingClientRect();
+      const sectionBottom = sectionRect.bottom;
+      
+      // If we're scrolling down and near the bottom of current section
+      if (currentScrollTop > lastScrollTop && sectionBottom < windowHeight * 0.3) {
+        if (this.currentSection < this.totalSections - 1) {
+          this.transitionToSection(this.currentSection + 1);
+        }
+      }
+      // If we're scrolling up and near the top of current section
+      else if (currentScrollTop < lastScrollTop && sectionRect.top > windowHeight * 0.7) {
+        if (this.currentSection > 0) {
+          this.transitionToSection(this.currentSection - 1);
+        }
       }
       
+      lastScrollTop = currentScrollTop;
+      
       scrollTimeout = setTimeout(() => {
-        isScrolling = false;
-      }, 800);
-    }, { passive: false });
+        // Reset transition flag after scroll stops
+        this.isTransitioning = false;
+      }, 100);
+    });
 
     // Handle keyboard navigation
     window.addEventListener('keydown', (e) => {
-      if (isScrolling) return;
+      if (this.isTransitioning) return;
       
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') {
         e.preventDefault();
         if (this.currentSection < this.totalSections - 1) {
-          this.currentSection++;
-          this.scrollToSection(this.currentSection);
+          this.transitionToSection(this.currentSection + 1);
         }
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
         e.preventDefault();
         if (this.currentSection > 0) {
-          this.currentSection--;
-          this.scrollToSection(this.currentSection);
+          this.transitionToSection(this.currentSection - 1);
         }
       }
     });
 
     // Handle touch/swipe events for mobile
-    let startX = 0;
     let startY = 0;
+    let startTime = 0;
     
     window.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
+      startTime = Date.now();
     }, { passive: true });
 
     window.addEventListener('touchend', (e) => {
-      if (isScrolling) return;
+      if (this.isTransitioning) return;
       
-      const endX = e.changedTouches[0].clientX;
       const endY = e.changedTouches[0].clientY;
-      
-      const diffX = startX - endX;
+      const endTime = Date.now();
       const diffY = startY - endY;
+      const diffTime = endTime - startTime;
       
-      // Determine if it's a horizontal or vertical swipe
-      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-        if (diffX > 0 && this.currentSection < this.totalSections - 1) {
-          // Swipe left - go to next section
-          this.currentSection++;
-          this.scrollToSection(this.currentSection);
-        } else if (diffX < 0 && this.currentSection > 0) {
-          // Swipe right - go to previous section
-          this.currentSection--;
-          this.scrollToSection(this.currentSection);
+      // Only trigger on quick swipes
+      if (Math.abs(diffY) > 50 && diffTime < 300) {
+        if (diffY > 0 && this.currentSection < this.totalSections - 1) {
+          // Swipe up - go to next section
+          this.transitionToSection(this.currentSection + 1);
+        } else if (diffY < 0 && this.currentSection > 0) {
+          // Swipe down - go to previous section
+          this.transitionToSection(this.currentSection - 1);
         }
       }
     }, { passive: true });
@@ -159,23 +185,27 @@ class PortfolioAnimations {
     });
   }
 
-  scrollToSection(sectionIndex) {
-    const mainContainer = document.querySelector('.main-container');
-    const translateX = -(sectionIndex * 20); // 20% per section
+  transitionToSection(sectionIndex) {
+    if (this.isTransitioning || sectionIndex < 0 || sectionIndex >= this.totalSections) return;
     
-    gsap.to(mainContainer, {
-      x: `${translateX}%`,
-      duration: 0.8,
-      ease: "power2.inOut",
-      onStart: () => {
-        this.isScrolling = true;
-      },
-      onComplete: () => {
-        this.isScrolling = false;
-        this.updateActiveNav(sectionIndex);
-        this.animateSectionContent(sectionIndex);
-      }
+    this.isTransitioning = true;
+    this.currentSection = sectionIndex;
+    
+    const targetSection = document.querySelectorAll('.section')[sectionIndex];
+    if (!targetSection) return;
+    
+    // Smooth scroll to the target section
+    targetSection.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
     });
+    
+    // Update navigation and animate content
+    setTimeout(() => {
+      this.updateActiveNav(sectionIndex);
+      this.animateSectionContent(sectionIndex);
+      this.isTransitioning = false;
+    }, 800);
   }
 
   animateSectionContent(sectionIndex) {
@@ -432,8 +462,7 @@ class PortfolioAnimations {
     navLinks.forEach((link, index) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        this.currentSection = index;
-        this.scrollToSection(this.currentSection);
+        this.transitionToSection(index);
       });
     });
   }
@@ -506,12 +535,10 @@ style.textContent = `
     transition: opacity 0.3s ease;
   }
 
-  /* Prevent text selection during scrolling */
-  .main-container {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+  /* Enable normal scrolling */
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   /* Enable text selection for content */
