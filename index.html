@@ -4,199 +4,341 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Agam Iheanyi-Igwe – Portfolio</title>
-  <!-- Link to CSS -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Optionally include a CDN for icons or animation libraries -->
-  <!-- Example: Animate.css for easy fade-in animations -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/> -->
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
 </head>
 <body>
+  <!-- Retro Background Animation -->
+  <div class="retro-background">
+    <div class="pixel-grid"></div>
+    <div class="floating-pixels"></div>
+    <div class="scanlines"></div>
+  </div>
+
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+      <div class="loading-text">LOADING PORTFOLIO...</div>
+    </div>
+  </div>
 
   <!-- Navigation -->
   <header class="header">
     <div class="nav-container">
-      <a class="logo" href="#">Home</a>
+      <a class="logo" href="#">
+        <span class="logo-text">AGAM</span>
+        <div class="logo-glow"></div>
+      </a>
       <nav>
         <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about" class="nav-link"><span class="nav-icon">👤</span>About</a></li>
+          <li><a href="#education" class="nav-link"><span class="nav-icon">🎓</span>Education</a></li>
+          <li><a href="#experience" class="nav-link"><span class="nav-icon">💼</span>Experience</a></li>
+          <li><a href="#skills" class="nav-link"><span class="nav-icon">⚔️</span>Skills</a></li>
+          <li><a href="#projects" class="nav-link"><span class="nav-icon">🚀</span>Projects</a></li>
+          <li><a href="#instagram" class="nav-link"><span class="nav-icon">📸</span>Instagram</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <section id="about" class="about-section">
-    <div class="about-container">
-      <!-- Profile Image -->
-      <div class="profile-image">
-        <img src="images/profile.jpeg" alt="Profile photo of Agamnelechim" />
-      </div>
-  
-      <!-- Name, Bio & Links -->
-      <div class="about-text">
-        <h1 class="floating-name">Agam <br> Iheanyi-Igwe</h1>
-        <br>
-        <div class="bio">
-          <p class="bio-line bio-line-1">CS student at Stanford, passionate about mitigating</p>
-          <p class="bio-line bio-line-2">algorithmic bias and building impactful software.</p>
-        </div>
-        <br>
-        <br>
-        <!-- Social links -->
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/agamIheanyiigwe" target="_blank">
-            <img src="images/linkedin.png" alt="LinkedIn Icon" />
-          </a>
-          <a href="mailto:agamnelechim@gmail.com">
-            <img src="images/mail.png" alt="Email Icon" />
-          </a>
-          <a href="https://github.com/username" target="_blank">
-            <img src="images/github.png" alt="GitHub Icon" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education Section -->
-  <section class="section education-section" id="education">
-    <div class="section-header">
-      <h1>Education</h1>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <h3>Stanford University</h3>
-        <p><strong>B.S. in Computer Science</strong> (Expected June 2027)</p>
-        <p><strong>GPA:</strong> 3.99/4.0</p>
-      </div>
-      <div class="timeline-item">
-        <h3>Howard Community College</h3>
-        <p><strong>Associates Degree in STEM Studies</strong> (June 2023)</p>
-        <p><strong>GPA:</strong> 3.89/4.0</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section class="section experience-section" id="experience">
-    <div class="section-header">
-      <h1>Experience</h1>
-    </div>
-    <div class="experience-container">
-      <!-- LinkedIn Card -->
-      <div class="experience-card">
-        <div class="card-inner">
-          <!-- Front Side -->
-          <div class="card-front">
-            <img src="images/linkedin.png" alt="LinkedIn Logo">
+  <!-- Main Content Container -->
+  <main class="main-container">
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+      <div class="section-3d-container">
+        <div class="about-container">
+          <div class="profile-image">
+            <div class="image-frame">
+              <img src="images/profile.jpeg" alt="Profile photo of Agamnelechim" />
+              <div class="image-glow"></div>
+            </div>
           </div>
-          <!-- Back Side -->
-          <div class="card-back">
-            <h1>LinkedIn Corporation</h1>
-            <br>
-            <p>Incoming Software Development Intern</p>
-            <h5>Summer 2025</h5>
-          </div>
-        </div>
-      </div>
-    
-      <!-- Amazon Card -->
-      <div class="experience-card">
-        <div class="card-inner">
-          <div class="card-front">
-            <img src="images/amazon.webp" alt="Amazon Logo">
-          </div>
-          <div class="card-back">
-            <h1>Amazon.com, Inc.</h1>
-            <br>
-            <p>Software Development Intern</p>
-            <h5>Summer 2024</h5>
-            <ul>
-              <li>Optimized large-order detection and processing.</li>
-              <li>Eliminated 6-hour processing delays with AWS tools.</li>
-              <li>Increased efficiency by 20%.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    
-      <!-- Jane Street Card -->
-      <div class="experience-card">
-        <div class="card-inner">
-          <div class="card-front">
-            <img src="images/janestreet.png" alt="Jane Street Logo">
-          </div>
-          <div class="card-back">
-            <h1>Jane Street</h1>
-            <br>
-            <p>AMP Intern</p>
-            <h5>Summer 2023</h5>
-            <ul>
-              <li>Five-week intensive training in probability, game theory, etc.</li>
-              <li>Developed market analytics for ETFs.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section class="section skills-section" id="skills">
-    <div class="section-header">
-      <h2>Skills</h2>
-    </div>
-    <div class="rpg-inventory">
-      <div class="rpg-item" data-name="Java" data-level="Lv. Intermediate" data-effect="Master of Backend Magic">
-        <img src="images/java_logo.png" alt="Java">
-      </div>
-      <div class="rpg-item" data-name="Python" data-level="Lv. Advanced" data-effect="Data Science Wizard">
-        <img src="images/python_logo.png" alt="Python">
-      </div>
-      <div class="rpg-item" data-name="C++" data-level="Lv. Intermediate" data-effect="Low-Level Sorcery">
-        <img src="images/cpp_logo.png" alt="C++">
-      </div>
-      <div class="rpg-item" data-name="OpenAI API" data-level="Lv. Beginner" data-effect="Pro Prompt Engineer">
-        <img src="images/openai.png" alt="OpenAI">
-      </div>
       
-      <div class="tooltip"></div>
-    </div>
-    
-  </section>
+          <div class="about-text">
+            <h1 class="floating-name">
+              <span class="name-part">Agam</span>
+              <span class="name-part">Iheanyi-Igwe</span>
+            </h1>
+            
+            <div class="bio">
+              <p class="bio-line bio-line-1">CS student at Stanford, passionate about mitigating</p>
+              <p class="bio-line bio-line-2">algorithmic bias and building impactful software.</p>
+            </div>
+            
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/agamIheanyiigwe" target="_blank" class="social-link">
+                <div class="social-icon">
+                  <img src="images/linkedin.png" alt="LinkedIn Icon" />
+                  <div class="icon-glow"></div>
+                </div>
+              </a>
+              <a href="mailto:agamnelechim@gmail.com" class="social-link">
+                <div class="social-icon">
+                  <img src="images/mail.png" alt="Email Icon" />
+                  <div class="icon-glow"></div>
+                </div>
+              </a>
+              <a href="https://github.com/username" target="_blank" class="social-link">
+                <div class="social-icon">
+                  <img src="images/github.png" alt="GitHub Icon" />
+                  <div class="icon-glow"></div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Education Section -->
+    <section class="section education-section" id="education">
+      <div class="section-3d-container">
+        <div class="section-header">
+          <h1 class="section-title">Education</h1>
+          <div class="title-underline"></div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-logo-container">
+              <img src="images/stanford.webp" alt="Stanford University Logo" class="timeline-logo">
+              <div class="logo-glow"></div>
+            </div>
+            <div class="timeline-content">
+              <h3>Stanford University</h3>
+              <p><strong>B.S. in Computer Science</strong> (Expected June 2027)</p>
+              <p><strong>GPA:</strong> 3.99/4.0</p>
+              <button class="coursework-toggle retro-button">
+                <span class="button-text">Relevant Coursework</span>
+                <div class="button-glow"></div>
+              </button>
+              <ul class="coursework-list">
+                <li>CS161 - Algorithms</li>
+                <li>CS107 - Computer Organization & Systems</li>
+                <li>CS109 - Probability</li>
+                <li>CS106B - Data Structures and Algorithms</li>
+                <li>CS103 - Discrete Math</li>
+                <li>CS124 - NLP</li>
+                <li>CS111 - Operating Systems</li>
+                <li>CS29N - Computational Decision Making</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-logo-container">
+              <img src="images/hcc.jpg" alt="Howard Community College Logo" class="timeline-logo">
+              <div class="logo-glow"></div>
+            </div>
+            <div class="timeline-content">
+              <h3>Howard Community College</h3>
+              <p><strong>Associates Degree in STEM Studies</strong> (Dec 2019 - June 2023)</p>
+              <p><strong>GPA:</strong> 3.89/4.0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Experience Section -->
+    <section class="section experience-section" id="experience">
+      <div class="section-3d-container">
+        <div class="section-header">
+          <h1 class="section-title">Experience</h1>
+          <div class="title-underline"></div>
+        </div>
+        <div class="experience-container">
+          <!-- LinkedIn Card -->
+          <div class="experience-card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="images/linkedin.png" alt="LinkedIn Logo">
+                <div class="card-glow"></div>
+              </div>
+              <div class="card-back">
+                <h1>LinkedIn Corporation</h1>
+                <p>Incoming Software Development Intern</p>
+                <h5>Summer 2025</h5>
+                <div class="card-back-glow"></div>
+              </div>
+            </div>
+          </div>
+        
+          <!-- Amazon Card -->
+          <div class="experience-card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="images/amazon.webp" alt="Amazon Logo">
+                <div class="card-glow"></div>
+              </div>
+              <div class="card-back">
+                <h1>Amazon.com, Inc.</h1>
+                <p>Software Development Intern</p>
+                <h5>Summer 2024</h5>
+                <ul>
+                  <li>Optimized large-order detection and processing.</li>
+                  <li>Eliminated 6-hour processing delays with AWS tools.</li>
+                  <li>Increased efficiency by 20%.</li>
+                </ul>
+                <div class="card-back-glow"></div>
+              </div>
+            </div>
+          </div>
+        
+          <!-- Jane Street Card -->
+          <div class="experience-card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="images/janestreet.png" alt="Jane Street Logo">
+                <div class="card-glow"></div>
+              </div>
+              <div class="card-back">
+                <h1>Jane Street</h1>
+                <p>AMP Intern</p>
+                <h5>Summer 2023</h5>
+                <ul>
+                  <li>Five-week intensive training in probability, game theory, etc.</li>
+                  <li>Developed market analytics for ETFs.</li>
+                </ul>
+                <div class="card-back-glow"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- Projects Section -->
-  <section class="section projects-section" id="projects">
-    <div class="section-header">
-      <h1>Projects</h1>
-    </div>
-    <div class="project-item">
-      <h3>TreePath <small>(Winter 2025)</small></h3>
-      <ul>
-        <li>Designed and implemented a web app with Node.js, Express.js, MySQL, React, and TailwindCSS, providing Stanford CS students a user-friendly interface for tracking course progress and requirements.</li>
-        <li>Integrated a BeautifulSoup web-scraping pipeline to extract Stanford course data and descriptions.</li>
-        <li>Implemented a collaborative filtering algorithm to recommend courses based on similar user academic history.</li>
-      </ul>
-    </div>
-    <div class="project-item">
-      <h3>Multi-Source Dataset Retrieval System <small>(Autumn 2024)</small></h3>
-      <ul>
-        <li>Developed a multi-repository search algorithm, utilizing OpenAI API, MongoDB, and web scraping to efficiently filter and retrieve relevant datasets from OpenML, Kaggle, and UCI repositories.</li>
-        <li>Provided ML developers with quick, easy access to diverse training data, promoting fairness by exposing models to broader ranges of data.</li>
-      </ul>
-    </div>
-  </section>
+    <!-- Skills Section -->
+    <section class="section skills-section" id="skills">
+      <div class="section-3d-container">
+        <div class="section-header">
+          <h2 class="section-title">Skill Inventory</h2>
+          <div class="title-underline"></div>
+        </div>
+        <div class="rpg-inventory">
+          <div class="rpg-item" data-name="Java" data-level="Lv. Intermediate" data-effect="Master of Backend Magic" data-rarity="rare">
+            <div class="item-frame">
+              <img src="images/java_logo.png" alt="Java">
+              <div class="item-glow"></div>
+            </div>
+            <div class="item-level">Lv. Intermediate</div>
+          </div>
+          <div class="rpg-item" data-name="Python" data-level="Lv. Advanced" data-effect="Data Science Wizard" data-rarity="epic">
+            <div class="item-frame">
+              <img src="images/python_logo.png" alt="Python">
+              <div class="item-glow"></div>
+            </div>
+            <div class="item-level">Lv. Advanced</div>
+          </div>
+          <div class="rpg-item" data-name="C++" data-level="Lv. Intermediate" data-effect="Low-Level Sorcery" data-rarity="rare">
+            <div class="item-frame">
+              <img src="images/cpp_logo.png" alt="C++">
+              <div class="item-glow"></div>
+            </div>
+            <div class="item-level">Lv. Intermediate</div>
+          </div>
+          <div class="rpg-item" data-name="OpenAI API" data-level="Lv. Beginner" data-effect="Pro Prompt Engineer" data-rarity="common">
+            <div class="item-frame">
+              <img src="images/openai.png" alt="OpenAI">
+              <div class="item-glow"></div>
+            </div>
+            <div class="item-level">Lv. Beginner</div>
+          </div>
+        </div>
+        
+        <!-- Enhanced Tooltip -->
+        <div class="tooltip">
+          <div class="tooltip-header">
+            <span class="tooltip-name"></span>
+            <span class="tooltip-level"></span>
+          </div>
+          <div class="tooltip-rarity"></div>
+          <div class="tooltip-effect"></div>
+          <div class="tooltip-stats">
+            <div class="stat-bar">
+              <span class="stat-label">Power</span>
+              <div class="stat-fill"></div>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-label">Experience</span>
+              <div class="stat-fill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects-section" id="projects">
+      <div class="section-3d-container">
+        <div class="section-header">
+          <h1 class="section-title">Projects</h1>
+          <div class="title-underline"></div>
+        </div>
+        <div class="project-item">
+          <div class="project-header">
+            <h3>TreePath <small>(Winter 2025)</small></h3>
+            <div class="project-badge">Featured</div>
+          </div>
+          <ul>
+            <li>Designed and implemented a web app with Node.js, Express.js, MySQL, React, and TailwindCSS, providing Stanford CS students a user-friendly interface for tracking course progress and requirements.</li>
+            <li>Integrated a BeautifulSoup web-scraping pipeline to extract Stanford course data and descriptions.</li>
+            <li>Implemented a collaborative filtering algorithm to recommend courses based on similar user academic history.</li>
+          </ul>
+        </div>
+        <div class="project-item">
+          <div class="project-header">
+            <h3>Multi-Source Dataset Retrieval System <small>(Autumn 2024)</small></h3>
+            <div class="project-badge">AI/ML</div>
+          </div>
+          <ul>
+            <li>Developed a multi-repository search algorithm, utilizing OpenAI API, MongoDB, and web scraping to efficiently filter and retrieve relevant datasets from OpenML, Kaggle, and UCI repositories.</li>
+            <li>Provided ML developers with quick, easy access to diverse training data, promoting fairness by exposing models to broader ranges of data.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instagram Section -->
+    <section class="section instagram-section" id="instagram">
+      <div class="section-3d-container">
+        <div class="section-header">
+          <h1 class="section-title">Instagram Feed</h1>
+          <div class="title-underline"></div>
+        </div>
+        <div class="instagram-container">
+          <div class="instagram-feed">
+            <div class="feed-placeholder">
+              <i class="fab fa-instagram"></i>
+              <h3>Instagram Feed</h3>
+              <p>Connect your Instagram to display your latest posts here!</p>
+              <a href="https://instagram.com/yourusername" target="_blank" class="instagram-link">
+                <span>Follow @yourusername</span>
+                <div class="link-glow"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
-    <p>© 2025–2026 Agamnelechim Iheanyi-Igwe</p>
+    <div class="footer-content">
+      <p>© 2025–2026 Agamnelechim Iheanyi-Igwe</p>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="mailto:agamnelechim@gmail.com">Contact</a>
+      </div>
+    </div>
   </footer>
 
   <!-- Scripts -->
